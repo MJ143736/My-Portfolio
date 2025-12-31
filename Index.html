@@ -1,0 +1,512 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mary Joy Dejito - Portfolio</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-color: #ffffff;
+            --text-color: #333333;
+            --accent-color: #007bff;
+            --secondary-color: #ff6b6b;
+            --tertiary-color: #4ecdc4;
+            --quaternary-color: #ffa726;
+            --section-bg: #f8f9fa;
+            --nav-bg: #ffffff;
+            --shadow: rgba(0, 0, 0, 0.1);
+            --gradient-bg: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            --wave-bg: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill="%23f8f9fa" d="M0,96L48,112C96,128,192,160,288,160C384,160,480,128,576,122.7C672,117,768,139,864,144C960,149,1056,139,1152,128C1248,117,1344,107,1392,101.3L1440,96L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path></svg>');
+        }
+        [data-theme="dark"] {
+            --bg-color: #121212;
+            --text-color: #e0e0e0;
+            --accent-color: #4dabf7;
+            --secondary-color: #ff8a80;
+            --tertiary-color: #80deea;
+            --quaternary-color: #ffb74d;
+            --section-bg: #1e1e1e;
+            --nav-bg: #1e1e1e;
+            --shadow: rgba(255, 255, 255, 0.1);
+            --gradient-bg: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
+            --wave-bg: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill="%231e1e1e" d="M0,96L48,112C96,128,192,160,288,160C384,160,480,128,576,122.7C672,117,768,139,864,144C960,149,1056,139,1152,128C1248,117,1344,107,1392,101.3L1440,96L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path></svg>');
+        }
+
+        /* Global Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Poppins', sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            background-color: var(--bg-color);
+            transition: background-color 0.3s, color 0.3s;
+            overflow-x: hidden;
+        }
+        a {
+            text-decoration: none;
+            color: var(--accent-color);
+            transition: color 0.3s;
+        }
+        section {
+            padding: 80px 20px;
+            min-height: 100vh;
+            background-color: var(--section-bg);
+            margin-bottom: 0;
+            position: relative;
+            overflow: hidden;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            animation: fadeInUp 1s ease-out;
+        }
+        h1, h2, h3 {
+            margin-bottom: 20px;
+            color: var(--accent-color);
+            font-weight: 600;
+        }
+        p {
+            margin-bottom: 15px;
+        }
+        .section-divider {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 100px;
+            background-image: var(--wave-bg);
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes typing {
+            from { width: 0; }
+            to { width: 100%; }
+        }
+        .fade-in {
+            animation: fadeInUp 1s ease-out;
+        }
+        .typing {
+            overflow: hidden;
+            border-right: 2px solid var(--accent-color);
+            white-space: nowrap;
+            animation: typing 3s steps(40, end), blink-caret 0.75s step-end infinite;
+        }
+        @keyframes blink-caret {
+            from, to { border-color: transparent; }
+            50% { border-color: var(--accent-color); }
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background-color: var(--nav-bg);
+            box-shadow: 0 2px 10px var(--shadow);
+            z-index: 1000;
+            padding: 15px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            backdrop-filter: blur(10px);
+        }
+        .logo {
+            display: flex;
+            align-items: center;
+        }
+        .logo img {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            margin-right: 10px;
+        }
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 20px;
+        }
+        nav a {
+            padding: 10px 15px;
+            border-radius: 20px;
+            transition: all 0.3s;
+        }
+        nav a:hover {
+            background: var(--accent-color);
+            color: white;
+            transform: scale(1.05);
+        }
+        #theme-toggle {
+            background: linear-gradient(45deg, var(--secondary-color), var(--tertiary-color));
+            border: none;
+            font-size: 1.5em;
+            cursor: pointer;
+            color: white;
+            padding: 10px;
+            border-radius: 50%;
+            transition: transform 0.3s;
+        }
+        #theme-toggle:hover {
+            transform: rotate(360deg);
+        }
+
+        /* Home Section */
+        #home {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            background: var(--gradient-bg);
+            color: white;
+            position: relative;
+        }
+        #home::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.3);
+            z-index: 1;
+        }
+        #home .container {
+            z-index: 2;
+        }
+        #home img {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            margin-bottom: 20px;
+            object-fit: cover;
+            border: 5px solid var(--secondary-color);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        }
+        #home .tagline {
+            font-size: 1.5em;
+            font-weight: 700;
+            color: var(--quaternary-color);
+        }
+        #home .typing {
+            font-size: 1.2em;
+            margin-top: 10px;
+        }
+        #home .quote {
+            font-style: italic;
+            margin-top: 20px;
+            color: var(--tertiary-color);
+        }
+
+        /* About Section */
+        #about {
+            text-align: center;
+            background: linear-gradient(135deg, var(--tertiary-color), #26a69a);
+            color: white;
+        }
+        #about h2 {
+            color: white;
+        }
+
+        /* Skills Section */
+        #skills {
+            text-align: center;
+            background: linear-gradient(135deg, var(--quaternary-color), #fb8c00);
+            color: white;
+        }
+        #skills h2 {
+            color: white;
+        }
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+        .skill-category {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 0 4px 15px var(--shadow);
+            transition: transform 0.3s, box-shadow 0.3s;
+            backdrop-filter: blur(10px);
+        }
+        .skill-category:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 30px var(--shadow);
+        }
+        .skill-category h3::before {
+            content: '🚀 ';
+        }
+
+        /* Projects Section */
+        #projects {
+            text-align: center;
+            background: linear-gradient(135deg, var(--secondary-color), #e57373);
+            color: white;
+        }
+        #projects h2 {
+            color: white;
+        }
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+        .project {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 0 4px 15px var(--shadow);
+            text-align: left;
+            transition: transform 0.3s, box-shadow 0.3s;
+            backdrop-filter: blur(10px);
+        }
+        .project:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 30px var(--shadow);
+        }
+        .project img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 10px;
+            margin-bottom: 15px;
+            transition: transform 0.3s;
+        }
+        .project:hover img {
+            transform: scale(1.05);
+        }
+        .project h3::before {
+            content: '💻 ';
+        }
+
+        /* Contact Section */
+        #contact {
+            text-align: center;
+            background: var(--gradient-bg);
+            color: white;
+        }
+        #contact h2 {
+            color: white;
+        }
+        form {
+            max-width: 600px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+        input, textarea {
+            padding: 15px;
+            border: 2px solid var(--accent-color);
+            border-radius: 10px;
+            background: rgba(255, 255, 255, 0.1);
+            color: var(--text-color);
+            transition: border-color 0.3s;
+        }
+        input:focus, textarea:focus {
+            border-color: var(--secondary-color);
+            outline: none;
+        }
+        button {
+            padding: 15px;
+            background: linear-gradient(45deg, var(--accent-color), var(--secondary-color));
+            color: white;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: transform 0.3s;
+        }
+        button:hover {
+            transform: scale(1.05);
+        }
+        .social-links {
+            margin-top: 20px;
+        }
+        .social-links a {
+            margin: 0 15px;
+            font-size: 2em;
+            transition: transform 0.3s;
+        }
+        .social-links a:hover {
+            transform: scale(1.2);
+        }
+
+        /* Scroll to Top Button */
+        #scroll-to-top {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: var(--accent-color);
+            color: white;
+            border: none;
+            padding: 15px;
+            border-radius: 50%;
+            cursor: pointer;
+            display: none;
+            z-index: 1000;
+            transition: opacity 0.3s;
+        }
+        #scroll-to-top.show {
+            display: block;
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 20px;
+            background: var(--section-bg);
+            color: var(--text-color);
+        }
+        footer p {
+            font-style: italic;
+            color: var(--tertiary-color);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            nav ul {
+                flex-direction: column;
+                gap: 10px;
+            }
+            #home {
+                padding: 60px 20px;
+            }
+            .skills-grid, .projects-grid {
+                grid-template-columns: 1fr;
+            }
+            .section-divider {
+                height: 50px;
+            }
+            .logo img {
+                width: 30px;
+                height: 30px;
+            }
+        }
+        @media (min-width: 768px) and (max-width: 1024px) {
+            .skills-grid, .projects-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+    </style>
+</head>
+<body data-theme="light">
+    <nav>
+        <div class="logo">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/c/c3/EVSU_Official_Logo.png" alt="EVSU Logo" width="100">
+        </div>
+        <div class="container">
+            <ul>
+                <li><a href="#home">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#skills">Skills</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+            <button id="theme-toggle">🌙</button>
+        </div>
+    </nav>
+
+    <section id="home">
+        <div class="container">
+            <img src="c:\Users\ay\Pictures\Camera Roll\received_609375751331350.jpeg" alt="Mary Joy Dejito">
+            <h1>Mary Joy Dejito</h1>
+            <p class="tagline typing">Powered by curiosity and technology | IT Student</p>
+            <p>Welcome to my digital portfolio! I am a passionate Information Technology student who enjoys transforming ideas into functional and visually appealing digital solutions. I am constantly exploring new technologies and improving my skills to become a well-rounded IT professional.</p>
+            <p class="quote">"Code is poetry written in logic." – Unknown</p>
+        </div>
+        <div class="section-divider"></div>
+    </section>
+
+    <section id="about">
+        <div class="container">
+            <h2>About Me</h2>
+            <p>I am currently pursuing a degree in Information Technology at Eastern Visayas State University. My journey into the world of technology started with a curiosity about how websites and applications work. Over time, this curiosity developed into a strong passion for web development, system design, and problem-solving.
+
+I enjoy working on hands-on projects that challenge my creativity and logical thinking. Whether it's designing user interfaces, writing clean code, or learning new frameworks, I always aim to improve my skills and produce meaningful work.
+
+Outside of academics, I enjoy reading about emerging technologies, watching tech tutorials, and exploring innovations in cybersecurity and networking.</p>
+            <p><strong>Educational Background:</strong> Studying Information Technology at Eastern Visayas State University.</p>
+            <p><strong>Technical Interests:</strong> Web development, Cybersecurity, and networking.</p>
+            <p><strong>Hobbies:</strong> Reading tech blogs, Watching Movies, and hiking.</p>
+        </div>
+        <div class="section-divider"></div>
+    </section>
+
+    <section id="skills">
+        <div class="container">
+            <h2>Skills</h2>
+            <div class="skills-grid">
+                <div class="skill-category">
+                    <h3>Programming Languages & Frameworks</h3>
+                    <p>HTML5, CSS3, JavaScript, basic React fundamentals, and responsive web design. Experience creating clean layouts, animations, and interactive user interfaces.</p>
+                </div>
+                <div class="skill-category">
+                    <h3>Soft Skills</h3>
+                    <p>Strong communication, teamwork, adaptability, and time management. Able to collaborate effectively in group projects and meet deadlines efficiently.</p>
+                </div>
+                <div class="skill-category">
+                    <h3>Tools</h3>
+                    <p>Git & GitHub for version control, Visual Studio Code for development, basic Linux commands, and familiarity with Docker environments.
+
+Soft Skills</p>
+                </div>
+                <div class="skill-category">
+                    <h3>Technical Areas</h3>
+                    <p>Web Development, Cybersecurity fundamentals, Networking concepts, and learning modern frameworks and technologies.</p>
+                </div>
+            </div>
+        </div>
+        <div class="section-divider"></div>
+    </section>
+
+
+    <section id="projects">
+        <div class="container">
+            <h2>Projects</h2>
+            <div class="projects-grid">
+                <div class="project">
+                    <img src="https://via.placeholder.com/300x200" alt="Personal Website">
+                    <h3>Personal Portfolio Website</h3>
+                    <p>A fully responsive personal portfolio showcasing my background, skills, and projects. Designed with modern UI principles and smooth animations for an engaging user experience.</p>
+                    <p><strong>Role:</strong> Designer & Developer.</p>
+                    <p><strong>Tools/Languages:</strong> HTML, CSS, JavaScript.</p>
+                </div>
+                <div class="project">
+                    <img src="https://via.placeholder.com/300x200" alt="Simple Calculator App">
+                    <h3>Simple Calculator App</h3>
+                    <p>A basic web app for performing arithmetic operations.</p>
+                    <p><strong>Role:</strong> Developer, designed UI and logic.</p>
+                    <p><strong>Tools/Languages:</strong> HTML, CSS, JavaScript.</p>
+                </div>
+            </div>
+        </div>
+        <div class="section-divider"></div>
+    </section>
+
+     <section id="contact">
+    <div class="container">
+        <h2>Contact Me</h2>
+        <p>I am always open to opportunities, collaborations, and learning experiences. Feel free to reach out if you’d like to work together or simply connect</p>
+        <form id="contact-form">
+            <input type="text" id="name" placeholder="Your Name" required>
+            <input type="email" id="email" placeholder="Your Email" required>
+            <textarea id="message" placeholder="Your Message" rows="5" required></textarea>
+            <button type="submit">Send Message</button>
+        </form>
+        <p>Email: maryjoy.dejito16@gmail.com</p>
+    </div>
+    <div class="section-divider"></div>
+</section>           
